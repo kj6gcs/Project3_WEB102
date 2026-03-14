@@ -1,0 +1,589 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: linear-gradient(135deg, #0b1020, #111a33, #1a2748);
+  color: #f4f7fb;
+}
+
+button {
+  font: inherit;
+}
+
+.app {
+  width: min(960px, 100%);
+  min-height: 100vh;
+  margin: 0 auto;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+.hero {
+  width: min(900px, 100%);
+  text-align: center;
+}
+
+.eyebrow {
+  letter-spacing: 0.2rem;
+  font-size: 0.8rem;
+  color: #9ec5ff;
+  margin-bottom: 0.5rem;
+}
+
+.hero h1 {
+  margin: 0;
+  font-size: 2rem;
+}
+
+.description {
+  max-width: 700px;
+  margin: 1rem auto 0;
+  line-height: 1.6;
+  color: #d7e3ff;
+}
+
+.stats {
+  margin-top: 1.5rem;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.stat-box {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 16px;
+  padding: 1rem 1.5rem;
+  min-width: 140px;
+}
+
+.stat-number {
+  display: block;
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+
+.stat-label {
+  font-size: 0.95rem;
+  color: #c6d5f7;
+}
+
+.study-area {
+  width: min(900px, 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.flashcard {
+  --flip-rotation: 0deg;
+  width: min(700px, 100%);
+  min-height: 420px;
+  border: none;
+  outline: none;
+  border-radius: 24px;
+  padding: 0;
+  background: transparent;
+  perspective: 1200px;
+  cursor: pointer;
+  transition: filter 0.2s ease;
+}
+
+.flashcard:focus,
+.flashcard:focus-visible {
+  outline: none;
+}
+
+.flashcard-inner {
+  position: relative;
+  min-height: 420px;
+  width: 100%;
+  transform-style: preserve-3d;
+  transform: rotateY(var(--flip-rotation));
+  transition: transform 0.55s ease;
+}
+
+.flashcard.flipped {
+  --flip-rotation: 180deg;
+}
+
+.flashcard:hover .flashcard-inner {
+  transform: translateY(-4px) rotateY(var(--flip-rotation));
+}
+
+.flashcard-face {
+  position: absolute;
+  inset: 0;
+  border-radius: 24px;
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  color: white;
+  backface-visibility: hidden;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+}
+
+.flashcard-front {
+  background: linear-gradient(145deg, #1f315e, #152342);
+}
+
+.flashcard-back {
+  background: linear-gradient(145deg, #243f2d, #173020);
+  transform: rotateY(180deg);
+}
+
+.difficulty {
+  display: inline-block;
+  padding: 0.45rem 0.85rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.04rem;
+  text-transform: uppercase;
+}
+
+.difficulty.easy {
+  background: #86efac;
+  color: #052e16;
+}
+
+.difficulty.medium {
+  background: #fde68a;
+  color: #422006;
+}
+
+.difficulty.hard {
+  background: #fca5a5;
+  color: #450a0a;
+}
+
+.card-content {
+  flex: 1;
+  min-height: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding-top: 1rem;
+  align-items: center;
+  text-align: center;
+  gap: 0.75rem;
+}
+
+.card-label {
+  text-transform: uppercase;
+  letter-spacing: 0.14rem;
+  font-size: 0.8rem;
+  color: #c7d8ff;
+  margin-bottom: 0.75rem;
+}
+
+.card-content h2 {
+  margin: 0;
+  font-size: 1.35rem;
+  line-height: 1.4;
+}
+
+.card-image {
+  margin-top: 1rem;
+  max-width: min(280px, 90%);
+  max-height: 140px;
+  width: auto;
+  height: auto;
+  border-radius: 10px;
+  object-fit: contain;
+  margin-bottom: 0.5rem;
+}
+
+.card-hint {
+  margin-top: auto;
+  color: #dce7ff;
+  font-size: 0.95rem;
+}
+
+.controls {
+  display: flex;
+  justify-content: center;
+}
+
+.next-btn {
+  border: none;
+  border-radius: 999px;
+  padding: 0.95rem 1.4rem;
+  background: #f8fafc;
+  color: #0f172a;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.next-btn:hover {
+  transform: scale(1.04);
+}
+
+.card-link {
+  display: inline-block;
+  color: #bfdbfe;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.card-link:hover {
+  text-decoration: underline;
+}
+
+.end-card button {
+  align-self: center;
+}
+
+.p-center {
+  text-align: center;
+}
+
+.progress {
+  font-size: 1rem;
+  color: #d7e3ff;
+  background: rgba(255, 255, 255, 0.08);
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.remaining {
+  color: #9ec5ff;
+  margin-left: 4px;
+}
+
+.guess-form {
+  width: min(700px, 100%);
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.guess-label {
+  font-weight: 700;
+  color: #f4f7fb;
+  text-align: left;
+}
+
+.guess-controls {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.guess-input {
+  flex: 1;
+  min-width: 220px;
+  padding: 0.95rem 1rem;
+  border-radius: 14px;
+  border: 2px solid rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.08);
+  color: white;
+  outline: none;
+}
+
+.guess-input::placeholder {
+  color: #b8c7e6;
+}
+
+.guess-input:focus {
+  border-color: #9ec5ff;
+}
+
+.guess-input-correct {
+  border-color: #86efac;
+  background: rgba(134, 239, 172, 0.12);
+}
+
+.guess-input-incorrect {
+  border-color: #fca5a5;
+  background: rgba(252, 165, 165, 0.12);
+}
+
+.feedback {
+  min-height: 1.5rem;
+  font-weight: 700;
+  text-align: left;
+}
+
+.feedback.correct {
+  color: #86efac;
+}
+
+.feedback.incorrect {
+  color: #fca5a5;
+}
+
+.controls-row {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.action-btn {
+  border: none;
+  border-radius: 999px;
+  padding: 0.95rem 1.4rem;
+  background: #f8fafc;
+  color: #0f172a;
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    transform 0.2s ease,
+    opacity 0.2s ease;
+}
+
+.action-btn:hover:not(:disabled) {
+  transform: scale(1.04);
+}
+
+.action-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.submit-btn {
+  background: #9ec5ff;
+}
+
+.shuffle-btn {
+  background: #fde68a;
+}
+
+.flashcard-correct .flashcard-front,
+.flashcard-correct .flashcard-back {
+  box-shadow:
+    0 0 0 3px rgba(134, 239, 172, 0.8),
+    0 12px 30px rgba(0, 0, 0, 0.25);
+}
+
+.flashcard-incorrect .flashcard-front,
+.flashcard-incorrect .flashcard-back {
+  box-shadow:
+    0 0 0 3px rgba(252, 165, 165, 0.8),
+    0 12px 30px rgba(0, 0, 0, 0.25);
+}
+
+@media (max-width: 640px) {
+  .flashcard {
+    width: 100%;
+    min-height: 360px;
+  }
+
+  .flashcard-inner {
+    min-height: 360px;
+  }
+
+  .guess-controls {
+    flex-direction: column;
+  }
+
+  .action-btn {
+    width: 100%;
+  }
+
+  .controls-row {
+    width: 100%;
+  }
+}
+
+.answer-highlight {
+  background: rgba(253, 230, 138, 0.85);
+  color: #1f2937;
+  padding: 0.08em 0.22em;
+  border-radius: 0.3em;
+  font-weight: 700;
+}
+
+/* these styles change the cursor based on whether the card is flipped or not, and whether it's locked or not */
+.flashcard:not(.flipped) {
+  cursor: pointer;
+}
+
+.flashcard.locked {
+  cursor: not-allowed;
+}
+
+/* reset button styles */
+.reset-btn {
+  background: #ef4444;
+  color: white;
+}
+
+.reset-btn:hover:not(:disabled) {
+  background: #dc2626;
+}
+
+@media (min-width: 768px) {
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
+
+  body {
+    overflow: hidden;
+  }
+
+  .app {
+    width: min(1100px, 100%);
+    height: 100vh;
+    min-height: 100vh;
+    padding: 0.75rem 1.25rem;
+    gap: 0.75rem;
+    justify-content: flex-start;
+    overflow: hidden;
+  }
+
+  .hero {
+    flex: 0 0 auto;
+  }
+
+  .eyebrow {
+    margin-bottom: 0.2rem;
+    font-size: 0.72rem;
+  }
+
+  .hero h1 {
+    font-size: clamp(1.35rem, 2vw, 1.85rem);
+    line-height: 1.15;
+  }
+
+  .description {
+    margin: 0.35rem auto 0;
+    max-width: 760px;
+    font-size: 0.9rem;
+    line-height: 1.35;
+  }
+
+  .stats {
+    margin-top: 0.6rem;
+    gap: 0.6rem;
+  }
+
+  .stat-box {
+    padding: 0.65rem 0.9rem;
+    min-width: 110px;
+    border-radius: 14px;
+  }
+
+  .stat-number {
+    font-size: 1.2rem;
+  }
+
+  .stat-label {
+    font-size: 0.78rem;
+  }
+
+  .study-area {
+    flex: 1 1 auto;
+    width: min(900px, 100%);
+    gap: 0.65rem;
+    justify-content: flex-start;
+    overflow: hidden;
+  }
+
+  .progress {
+    font-size: 0.86rem;
+    padding: 4px 10px;
+  }
+
+  .flashcard {
+    width: min(700px, 100%);
+    min-height: 0;
+    height: min(38vh, 340px);
+  }
+
+  .flashcard-inner {
+    min-height: 0;
+    height: 100%;
+  }
+
+  .flashcard-face {
+    padding: 0.9rem 1rem;
+  }
+
+  .difficulty {
+    padding: 0.35rem 0.7rem;
+    font-size: 0.72rem;
+  }
+
+  .card-content {
+    gap: 0.45rem;
+    padding-top: 0.45rem;
+  }
+
+  .card-label {
+    font-size: 0.72rem;
+    margin-bottom: 0.35rem;
+  }
+
+  .card-content h2 {
+    font-size: clamp(0.95rem, 1.35vw, 1.15rem);
+    line-height: 1.28;
+  }
+
+  .card-image {
+    margin-top: 0.25rem;
+    margin-bottom: 0.2rem;
+    max-height: min(11vh, 90px);
+    max-width: min(220px, 80%);
+  }
+
+  .card-hint {
+    font-size: 0.8rem;
+  }
+
+  .guess-form {
+    width: min(700px, 100%);
+    gap: 0.45rem;
+  }
+
+  .guess-label {
+    font-size: 0.9rem;
+  }
+
+  .guess-controls {
+    gap: 0.55rem;
+  }
+
+  .guess-input {
+    min-width: 0;
+    padding: 0.72rem 0.9rem;
+    font-size: 0.92rem;
+  }
+
+  .feedback {
+    min-height: 1.1rem;
+    font-size: 0.9rem;
+  }
+
+  .controls-row {
+    gap: 0.55rem;
+  }
+
+  .action-btn {
+    padding: 0.72rem 1rem;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 767px) {
+  body {
+    overflow: auto;
+  }
+}
