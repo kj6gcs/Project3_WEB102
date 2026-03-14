@@ -49,11 +49,18 @@ The following **additional** features are implemented:
 
 Here’s a video walkthrough of the implemented required features:
 
-[![Watch the walkthrough](https://img.youtube.com/vi/zfRrX2UBtQk/hqdefault.jpg)](https://youtu.be/zfRrX2UBtQk)
-
-<img src="advanced-flashcards/public/project3Walkthrough.gif" width="800" alt="GIF Walkthrough" />
+<p align="center">
+  <a href="https://youtu.be/zfRrX2UBtQk" target="_blank" rel="noopener noreferrer">
+    <img src="https://img.youtube.com/vi/zfRrX2UBtQk/hqdefault.jpg" width="600">
+  </a>
+</p>
+<p align="center">
+  <img src="advanced-flashcards/public/project3Walkthrough.gif" alt="Project Walkthrough">
+</p>
 
 GIF created with ScreenToGif (https://www.screentogif.com/) for Windows
+
+</div>
 
 ## Notes
 
